@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satjna - Where Hearts Speak, Careers Peak</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+
+        /* Styles for custom alert message */
+        .custom-alert {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-alert-success {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+        .custom-alert-error {
+            background-color: #f44336; /* Red */
+            color: white;
+        }
+    </style>
+</head>
+<body class="font-['Inter'] bg-gray-50">
+    
+    <div id="customAlert" class="custom-alert"></div>
+
+    <nav class="fixed w-full z-50 glass-effect" x-data="{ mobileMenu: false, scrolled: false }" 
+         @scroll.window="scrolled = (window.pageYOffset > 20)"
+         :class="{ 'bg-white shadow-lg': scrolled }">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold gradient-text">Satjna</h1>
+                    <span class="ml-3 text-sm text-gray-600 hidden md:block">Where Hearts Speak, Careers Peak</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-purple-600 transition">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-purple-600 transition">Services</a>
+                    <a href="#about" class="text-gray-700 hover:text-purple-600 transition">About</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-purple-600 transition">Testimonials</a>
+                    <a href="#contact" class="text-gray-700 hover:text-purple-600 transition">Contact</a>
+                    <button class="bg-gradient-to-r from-purple-600 to-purple-800 text-white px-6 py-2 rounded-full hover:shadow-lg transition transform hover:scale-105">
+                        Book Session
+                    </button>
+                </div>
+                
+                <button @click="mobileMenu = !mobileMenu" class="md:hidden" aria-label="Toggle navigation menu" :aria-expanded="mobileMenu.toString()">
+                    <i class="fas fa-bars text-2xl text-gray-700"></i>
+                </button>
+            </div>
+            
+            <div x-show="mobileMenu" x-transition class="md:hidden mt-4 pb-4">
+                <a href="#home" @click="mobileMenu = false" class="block py-2 text-gray-700">Home</a>
+                <a href="#services" @click="mobileMenu = false" class="block py-2 text-gray-700">Services</a>
+                <a href="#about" @click="mobileMenu = false" class="block py-2 text-gray-700">About</a>
+                <a href="#testimonials" @click="mobileMenu = false" class="block py-2 text-gray-700">Testimonials</a>
+                <a href="#contact" @click="mobileMenu = false" class="block py-2 text-gray-700">Contact</a>
+                <button class="mt-4 w-full bg-gradient-to-r from-purple-600 to-purple-800 text-white px-6 py-2 rounded-full">
+                    Book Session
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <section id="home" class="min-h-screen flex items-center pt-20 bg-gradient-to-br from-purple-50 to-pink-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                    <h2 class="text-5xl md:text-6xl font-['Playfair_Display'] font-bold text-gray-800 mb-6">
+                        Where Hearts <span class="gradient-text">Speak</span>,<br>
+                        Careers <span class="gradient-text">Peak</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Your safe space for career guidance and emotional wellness. 
+                        Designed exclusively for IT professionals seeking growth and balance.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-gradient-to-r from-purple-600 to-purple-800 text-white px-8 py-4 rounded-full hover:shadow-xl transition transform hover:scale-105">
+                            <i class="fas fa-rocket mr-2"></i> Start Your Journey
+                        </button>
+                        <button class="border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full hover:bg-purple-600 hover:text-white transition">
+                            <i class="fas fa-headphones mr-2"></i> Need Someone to Listen?
+                        </button>
+                    </div>
+                    
+                    <div class="flex gap-8 mt-10">
+                        <div>
+                            <h3 class="text-3xl font-bold gradient-text">500+</h3>
+                            <p class="text-gray-600">Happy Clients</p>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-bold gradient-text">95%</h3>
+                            <p class="text-gray-600">Success Rate</p>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-bold gradient-text">24/7</h3>
+                            <p class="text-gray-600">Support</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-3xl opacity-30 float-animation"></div>
+                        <img src="https://via.placeholder.com/500x500/667eea/ffffff?text=Professional+Illustration" 
+                             alt="Professional Growth Illustration" 
+                             class="relative z-10 rounded-2xl shadow-2xl w-full h-auto max-w-md lg:max-w-lg mx-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Our Services</h2>
+                <p class="text-xl text-gray-600">Comprehensive support for your professional and personal growth</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl hover:shadow-xl transition" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-purple-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">IT Career Counseling</h3>
+                    <p class="text-gray-600 mb-6">Navigate your tech career with expert guidance. From job switches to skill development, we've got you covered.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fas fa-check text-purple-600 mr-2"></i> Resume & LinkedIn Optimization</li>
+                        <li class="flex items-center"><i class="fas fa-check text-purple-600 mr-2"></i> Interview Preparation</li>
+                        <li class="flex items-center"><i class="fas fa-check text-purple-600 mr-2"></i> Career Transition Strategy</li>
+                        <li class="flex items-center"><i class="fas fa-check text-purple-600 mr-2"></i> Salary Negotiation</li>
+                    </ul>
+                    <button class="text-purple-600 font-semibold hover:text-purple-800 transition">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+                
+                <div class="bg-gradient-to-br from-pink-50 to-pink-100 p-8 rounded-2xl hover:shadow-xl transition" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-pink-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Anonymous Listening Support</h3>
+                    <p class="text-gray-600 mb-6">Sometimes you just need someone to listen. Share your thoughts freely in a safe, judgment-free space.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fas fa-check text-pink-600 mr-2"></i> Complete Anonymity</li>
+                        <li class="flex items-center"><i class="fas fa-check text-pink-600 mr-2"></i> 24/7 Availability</li>
+                        <li class="flex items-center"><i class="fas fa-check text-pink-600 mr-2"></i> Trained Listeners</li>
+                        <li class="flex items-center"><i class="fas fa-check text-pink-600 mr-2"></i> Multilingual Support</li>
+                    </ul>
+                    <button class="text-pink-600 font-semibold hover:text-pink-800 transition">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-gradient-to-r from-purple-600 to-pink-600 p-1 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white p-8 rounded-2xl">
+                    <div class="flex flex-col md:flex-row items-center justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Complete Wellness Package</h3>
+                            <p class="text-gray-600">Combine career counseling with emotional support for holistic growth</p>
+                        </div>
+                        <button class="mt-4 md:mt-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition">
+                            View Packages
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">How It Works</h2>
+                <p class="text-xl text-gray-600">Simple steps to start your journey with Satjna</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-purple-600">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Choose Service</h3>
+                    <p class="text-gray-600">Select career counseling, listening support, or both</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-purple-600">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Book Session</h3>
+                    <p class="text-gray-600">Pick a convenient time slot that works for you</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-purple-600">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Connect Virtually</h3>
+                    <p class="text-gray-600">Join via video, voice, or chat - your choice</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-purple-600">4</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Transform & Grow</h3>
+                    <p class="text-gray-600">Experience positive change in career and life</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">What Our Clients Say</h2>
+                <p class="text-xl text-gray-600">Real stories from IT professionals we've helped</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-600 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            RK
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Rahul K.</h4>
+                            <p class="text-sm text-gray-600">Software Engineer, Bangalore</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 italic">"The anonymous listening sessions helped me deal with imposter syndrome. Now I'm confident in my new role at a product company!"</p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-pink-600 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            PS
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Priya S.</h4>
+                            <p class="text-sm text-gray-600">Tech Lead, Mumbai</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 italic">"Career counseling at Satjna helped me negotiate a 40% salary hike. The guidance was practical and tailored to IT industry standards."</p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-600 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            AM
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Anonymous</h4>
+                            <p class="text-sm text-gray-600">IT Professional</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 italic">"Being able to talk anonymously about work stress without judgment has been life-changing. I finally feel heard and understood."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-xl text-gray-600">Choose the plan that works best for you</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Starter</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">₹999</span>
+                        <span class="text-gray-600">/session</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 45-minute session</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Career OR Listening</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Email support</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Session recording</li>
+                    </ul>
+                    <button class="w-full border-2 border-purple-600 text-purple-600 py-3 rounded-full hover:bg-purple-600 hover:text-white transition">
+                        Get Started
+                    </button>
+                </div>
+                
+                <div class="bg-gradient-to-br from-purple-600 to-pink-600 p-8 rounded-2xl shadow-xl transform scale-105" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-yellow-400 text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">MOST POPULAR</div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Growth</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-white">₹3,999</span>
+                        <span class="text-gray-200">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 text-white">
+                        <li class="flex items-center"><i class="fas fa-check mr-2"></i> 4 sessions/month</li>
+                        <li class="flex items-center"><i class="fas fa-check mr-2"></i> Mix career & listening</li>
+                        <li class="flex items-center"><i class="fas fa-check mr-2"></i> Priority scheduling</li>
+                        <li class="flex items-center"><i class="fas fa-check mr-2"></i> WhatsApp support</li>
+                        <li class="flex items-center"><i class="fas fa-check mr-2"></i> Personalized action plan</li>
+                    </ul>
+                    <button class="w-full bg-white text-purple-600 py-3 rounded-full font-semibold hover:shadow-lg transition">
+                        Get Started
+                    </button>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Transform</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">₹9,999</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Unlimited sessions</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Career + Listening</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 24/7 support</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Resume review</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Mock interviews</li>
+                    </ul>
+                    <button class="w-full border-2 border-purple-600 text-purple-600 py-3 rounded-full hover:bg-purple-600 hover:text-white transition">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-20 bg-gradient-to-r from-purple-600 to-pink-600">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6" data-aos="fade-up">
+                Ready to Transform Your Life?
+            </h2>
+            <p class="text-xl text-gray-100 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Join hundreds of IT professionals who've found career clarity and emotional balance with Satjna
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
+                <button class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition transform hover:scale-105">
+                    Book Your First Session
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition">
+                    <i class="fas fa-phone mr-2"></i> Talk to Us
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Get in Touch</h2>
+                    <p class="text-xl text-gray-600">We're here to help you start your journey</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg" data-aos="fade-right">
+                        <form id="contactForm" method="POST" action="#" x-data="{ formData: { name: '', email: '', service: '', message: '' } }">
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
+                                <input type="text" id="name" name="name" x-model="formData.name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600" placeholder="Your name" required>
+                            </div>
+                            <div class="mb-6">
+                                <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                                <input type="email" id="email" name="email" x-model="formData.email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600" placeholder="your@email.com" required>
+                            </div>
+                            <div class="mb-6">
+                                <label for="service" class="block text-gray-700 font-semibold mb-2">Service Interested In</label>
+                                <select id="service" name="service" x-model="formData.service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600" required>
+                                    <option value="">Select a service</option>
+                                    <option value="career">Career Counseling</option>
+                                    <option value="listening">Anonymous Listening</option>
+                                    <option value="both">Both Services</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
+                                <textarea id="message" name="message" x-model="formData.message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600" placeholder="Tell us how we can help..." required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-full font-semibold hover:shadow-lg transition">
+                                Send Message
+                            </button>
+                        </form>
+                         <div id="formSubmissionMessage" class="mt-4 text-center"></div>
+                    </div>
+                    
+                    <div class="space-y-6" data-aos="fade-left">
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <div class="flex items-center">
+                                <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Email Us</h4>
+                                    <p class="text-gray-600">connect@satjna.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <div class="flex items-center">
+                                <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-phone text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Call Us</h4>
+                                    <p class="text-gray-600">+91 98765 43210</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <div class="flex items-center">
+                                <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-clock text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Available Hours</h4>
+                                    <p class="text-gray-600">24/7 for listening support</p>
+                                    <p class="text-gray-600">9 AM - 9 PM for career counseling</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-purple-600 to-pink-600 p-6 rounded-2xl text-white">
+                            <h4 class="font-semibold mb-4">Connect With Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-white/20 w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/30 transition" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-white/20 w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/30 transition" aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-white/20 w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/30 transition" aria-label="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-white/20 w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/30 transition" aria-label="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
+                    <p class="text-xl text-gray-600">Everything you need to know about Satjna</p>
+                </div>
+                
+                <div class="space-y-4" x-data="{ activeAccordion: null }">
+                    <div class="bg-gray-50 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                        <button @click="activeAccordion = activeAccordion === 1 ? null : 1" 
+                                class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition rounded-lg">
+                            <span class="font-semibold text-gray-800">Is the anonymous listening service really anonymous?</span>
+                            <i class="fas fa-chevron-down text-gray-600 transition-transform" 
+                               :class="{ 'rotate-180': activeAccordion === 1 }"></i>
+                        </button>
+                        <div x-show="activeAccordion === 1" x-transition class="px-6 pb-4">
+                            <p class="text-gray-600">Yes, absolutely! You don't need to share your real name, and we don't store any identifying information. You can choose to remain completely anonymous throughout your sessions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                        <button @click="activeAccordion = activeAccordion === 2 ? null : 2" 
+                                class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition rounded-lg">
+                            <span class="font-semibold text-gray-800">What qualifications do your counselors have?</span>
+                            <i class="fas fa-chevron-down text-gray-600 transition-transform" 
+                               :class="{ 'rotate-180': activeAccordion === 2 }"></i>
+                        </button>
+                        <div x-show="activeAccordion === 2" x-transition class="px-6 pb-4">
+                            <p class="text-gray-600">Our career counselors are certified professionals with experience in the IT industry. Our listeners undergo rigorous training in active listening, empathy, and crisis management.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg" data-aos="fade-up" data-aos-delay="300">
+                        <button @click="activeAccordion = activeAccordion === 3 ? null : 3" 
+                                class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition rounded-lg">
+                            <span class="font-semibold text-gray-800">Can I switch between services in my package?</span>
+                            <i class="fas fa-chevron-down text-gray-600 transition-transform" 
+                               :class="{ 'rotate-180': activeAccordion === 3 }"></i>
+                        </button>
+                        <div x-show="activeAccordion === 3" x-transition class="px-6 pb-4">
+                            <p class="text-gray-600">Yes! Our Growth and Transform packages allow you to mix and match between career counseling and listening sessions based on your needs each month.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg" data-aos="fade-up" data-aos-delay="400">
+                        <button @click="activeAccordion = activeAccordion === 4 ? null : 4" 
+                                class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition rounded-lg">
+                            <span class="font-semibold text-gray-800">What if I need immediate support?</span>
+                            <i class="fas fa-chevron-down text-gray-600 transition-transform" 
+                               :class="{ 'rotate-180': activeAccordion === 4 }"></i>
+                        </button>
+                        <div x-show="activeAccordion === 4" x-transition class="px-6 pb-4">
+                            <p class="text-gray-600">Our listening service operates 24/7. For career counseling, we offer same-day appointments when available. Premium members get priority access to immediate support.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 gradient-text">Satjna</h3>
+                    <p class="text-gray-400 mb-4">Where Hearts Speak, Careers Peak</p>
+                    <p class="text-gray-400 text-sm">Your trusted partner for career growth and emotional wellness in the IT industry.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#services" class="hover:text-white transition">Services</a></li>
+                        <li><a href="#about" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#testimonials" class="hover:text-white transition">Testimonials</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Our Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#services" class="hover:text-white transition">Career Counseling</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Anonymous Listening</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Interview Prep</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Wellness Packages</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Stay Updated</h4>
+                    <p class="text-gray-400 mb-4">Get career tips and wellness advice delivered to your inbox.</p>
+                    <form id="newsletterForm" method="POST" action="#" class="flex">
+                        <input type="email" name="newsletter_email" placeholder="Your email" class="bg-gray-800 px-4 py-2 rounded-l-lg flex-1 focus:outline-none text-white" required>
+                        <button type="submit" class="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 rounded-r-lg hover:shadow-lg transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2024 Satjna. All rights reserved.</p>
+                <div class="flex space-x-6 text-gray-400">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <a href="https://wa.me/919876543210" target="_blank" 
+       class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition transform hover:scale-110 z-50"
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true, // Animations will only occur once
+            offset: 100  // Offset (in px) from the original trigger point
+        });
+        
+        // Smooth scroll for navigation links
+        // This ensures that clicking on a nav link smoothly scrolls to the section
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent default anchor click behavior
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth', // Defines the transition animation
+                        block: 'start'      // Vertically align to the start of the visible area
+                    });
+
+                    // If it's a mobile menu link, close the menu
+                    const mobileMenuButton = document.querySelector('button[aria-label="Toggle navigation menu"]');
+                    if (mobileMenuButton && mobileMenuButton.offsetParent !== null) { // Check if mobile menu is active/visible
+                        // This attempts to access Alpine.js data to close the menu.
+                        // A more robust way would be to emit an event or directly call an Alpine function if possible.
+                        // For now, we'll assume Alpine handles its state.
+                        // If direct Alpine manipulation is needed, it's more complex from outside Alpine's scope.
+                        // A simple way is to ensure the mobile menu links in HTML have @click="mobileMenu = false"
+                    }
+                }
+            });
+        });
+
+        // Function to display custom alert messages
+        function showCustomAlert(message, type = 'success') {
+            const alertBox = document.getElementById('customAlert');
+            alertBox.textContent = message;
+            alertBox.className = 'custom-alert'; // Reset classes
+            if (type === 'success') {
+                alertBox.classList.add('custom-alert-success');
+            } else {
+                alertBox.classList.add('custom-alert-error');
+            }
+            alertBox.style.display = 'block';
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Form submission handler for Contact Form
+        // ISSUE FIXED: Changed from generic 'form' to specific ID '#contactForm'
+        // ISSUE FIXED: Replaced alert() with custom message
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent default form submission
+                
+                // Basic client-side validation check (though 'required' attribute handles most)
+                const name = contactForm.querySelector('#name').value;
+                const email = contactForm.querySelector('#email').value;
+                const service = contactForm.querySelector('#service').value;
+                const message = contactForm.querySelector('#message').value;
+
+                if (!name || !email || !service || !message) {
+                    showCustomAlert('Please fill out all required fields.', 'error');
+                    return;
+                }
+
+                // Placeholder for actual form submission logic (e.g., AJAX call)
+                console.log('Contact form submitted with data:', {
+                    name: name,
+                    email: email,
+                    service: service,
+                    message: message
+                });
+
+                // Show success message using custom alert
+                showCustomAlert('Thank you for reaching out! We\'ll get back to you within 24 hours.', 'success');
+                
+                // Optionally, reset the form (Alpine.js might handle this if x-model is two-way bound and form is reset)
+                // contactForm.reset(); 
+                // If using Alpine for form data, you might need to reset formData:
+                // Alpine.data('formData').name = ''; // etc. or find the component and reset its data.
+                // For simplicity, a manual reset after submission:
+                if (typeof Alpine !== 'undefined' && this.__x) { // Check if Alpine context exists
+                    const alpineData = Alpine.$data(this);
+                    if (alpineData && alpineData.formData) {
+                        alpineData.formData.name = '';
+                        alpineData.formData.email = '';
+                        alpineData.formData.service = '';
+                        alpineData.formData.message = '';
+                    }
+                } else {
+                     contactForm.reset(); // Fallback if Alpine context not easily accessible
+                }
+            });
+        }
+
+        // Form submission handler for Newsletter Form
+        const newsletterForm = document.getElementById('newsletterForm');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const emailInput = newsletterForm.querySelector('input[type="email"]');
+                if (emailInput.value) {
+                     // Placeholder for actual form submission logic
+                    console.log('Newsletter subscription for:', emailInput.value);
+                    showCustomAlert('Thank you for subscribing to our newsletter!', 'success');
+                    emailInput.value = ''; // Clear input
+                } else {
+                    showCustomAlert('Please enter your email address.', 'error');
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
